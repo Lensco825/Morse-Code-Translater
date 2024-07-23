@@ -32,6 +32,7 @@ nav {
     justify-content: space-between;
     font-size: 2rem;
     height: 80px;
+    position: relative;
 }
 
 nav > h1 {
@@ -47,6 +48,20 @@ nav div {
     justify-content: center;
     padding-right: 10px;
 }
+
+.refSheet {
+    width: 250px;
+    position: absolute;
+    z-index: 2;
+    right: 80px;
+    top: 20px;
+    border-radius: 10px;
+}
+
+summary {
+    list-style: none;
+}
+
 
 form {
     width: 500px;
