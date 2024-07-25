@@ -1,7 +1,9 @@
-var morseText = document.getElementById('morseTextArea');
+var InputTextArea = document.getElementById('morseTextArea');
+var OutputTextArea = document.getElementById('textArea');
 var translateButton = document.querySelector('.translateBtn');
-var input = morseText.value.toString("");
-var output = document.getElementById('textArea');
+var input = InputTextArea.value.toString("");
+var isInputMorse = true;
+var swapBtn = document.getElementById('swapBtn');
 
 var morseRef = {
     ".-": "A",
@@ -43,24 +45,60 @@ var morseRef = {
     "/": " "
 };
 
+var reversedMorseRef = {};
+
+for (var key in morseRef) {
+    if (morseRef.hasOwnProperty(key)) {
+        reversedMorseRef[String(morseRef[key])] = key;
+    }
+}
+
+console.log(morseRef);
+
+console.log(reversedMorseRef);
+
+
 
 function checkIfValid() {
-    input =  morseText.value.toString("");
-    if (input.match(/[a-zA-Z0-9_]/g) === null) {
+    input =  InputTextArea.value.toString("");
+    if (isInputMorse && input.match(/[a-zA-Z0-9_]/g) === null) {
         morseToText();
         return console.log(input.split(" "));
        }
+       if (!isInputMorse) {
+        textToMorse();
+        return console.log(input.split(" "));
+       }
        else {
-        morseText.value = "";
+        InputTextArea.value = "";
        }
 
     }
 
 function morseToText() {
 let str = input.split(" ").map(code => morseRef[code]).join("");
-output.value = str;
+OutputTextArea.value = str;
 
 return console.log(str);
 }
 
+function textToMorse() {
+let textStr = input.split(" ").map(text => reversedMorseRef[text]).join(" ");
+OutputTextArea.value = textStr;
+return console.log(textStr);
+}
+
 translateButton.addEventListener('click', checkIfValid); 
+swapBtn.addEventListener('click', () => {
+    isInputMorse = !isInputMorse;
+    if (!isInputMorse) {
+        InputTextArea.setAttribute("placeholder", "Text(Input)");
+        OutputTextArea.setAttribute("placeholder", "Morse(Output)");
+    }
+    else {
+        InputTextArea.setAttribute("placeholder", "Morse(Input)");
+        OutputTextArea.setAttribute("placeholder", "Text(Output)");
+    }
+
+    console.log(isInputMorse);
+})

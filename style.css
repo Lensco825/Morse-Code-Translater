@@ -64,24 +64,30 @@ summary {
 
 
 form {
-    width: 500px;
+    width: 550px;
     height: 60%;
     display: flex;
     flex-direction: column;
-    gap: 45px;
+    gap: 20px;
     position: relative;
+  align-items: center;
 }
 
 
 textarea {
     background-color: var(--secondary-bg-color);
     width: 500px;
-    height: 252px;
+    height: 282px;
     border: solid 2px;
     padding: 15px;
     border-radius: 10px;
     resize: none;
     position: relative;
+}
+
+
+form #swapBtn {
+    font-size: 3.5rem;
 }
 
 .translateBtn {
@@ -95,7 +101,7 @@ textarea {
     border-radius: 5px;
     position: absolute;
     z-index: 2;
-    right: 0;
+    right: 20px;
     top: 130px;
     font-size: 1.8rem;
     display: none;
@@ -121,7 +127,10 @@ textarea[name="Morsefield"]:not(:placeholder-shown)  ~ .translateBtn {
         width: 100%;
     }
     textarea {
-       width: 70%;
+       width: 280px;
        height: 200px;
+    }
+    .translateBtn {
+        right: 75px;
     }
 }
