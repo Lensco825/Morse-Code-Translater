@@ -39,6 +39,19 @@ nav > h1 {
     font-weight: 300;
     align-content: center;
     padding: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 1s steps(25, end);
+}
+
+@keyframes typing {
+    from {
+        width: 0%;
+        border-right: solid;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 nav div {
