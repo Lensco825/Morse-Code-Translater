@@ -83,14 +83,16 @@ return console.log(str);
 }
 
 function textToMorse() {
-let textStr = input.split(" ").map(text => reversedMorseRef[text]).join(" ");
+let textStr = input.toUpperCase().split("").map(text => reversedMorseRef[text]).join(" ");
 OutputTextArea.value = textStr;
-return console.log(textStr);
+console.log(textStr);
 }
 
 translateButton.addEventListener('click', checkIfValid); 
 swapBtn.addEventListener('click', () => {
     isInputMorse = !isInputMorse;
+    OutputTextArea.value = '';
+    InputTextArea.value = '';
     if (!isInputMorse) {
         InputTextArea.setAttribute("placeholder", "Text(Input)");
         OutputTextArea.setAttribute("placeholder", "Morse(Output)");
