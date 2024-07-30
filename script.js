@@ -1,106 +1,115 @@
-var InputTextArea = document.getElementById('morseTextArea');
-var OutputTextArea = document.getElementById('textArea');
-var translateButton = document.querySelector('.translateBtn');
+var InputTextArea = document.getElementById("morseTextArea");
+var OutputTextArea = document.getElementById("textArea");
+var translateButton = document.querySelector(".translateBtn");
 var input = InputTextArea.value.toString("");
 var isInputMorse = true;
-var swapBtn = document.getElementById('swapBtn');
+var swapBtn = document.getElementById("swapBtn");
 
 var morseRef = {
-    ".-": "A",
-    "-...": "B",
-    "-.-.": "C", 
-    "-..": "D",
-    ".": "E",
-    "..-.": "F",
-    "--.": "G",
-    "....": "H",
-    "..": "I",
-    ".---": "J",
-    "-.-": "K",
-    ".-..": "L",
-    "--": "M",
-    "-.": "N",
-    "---": "O",
-    ".--.": "P",
-    "--.-": "Q",
-    ".-.": "R",
-    "...": "S",
-    "-": "T",
-    "..-": "U",
-    "...-": "V",
-    ".--": "W",
-    "-..-": "X",
-    "-.--": "Y",
-    "--..": "Z",
-    ".----": "1",
-    "..---": "2",
-    "...--": "3",
-    "....-": "4",
-    ".....": "5",
-    "-....": "6",
-    "--...": "7",
-    "---..": "8",
-    "----.": "9",
-    "-----": "0",
-    "/": " "
+  ".-": "A",
+  "-...": "B",
+  "-.-.": "C",
+  "-..": "D",
+  ".": "E",
+  "..-.": "F",
+  "--.": "G",
+  "....": "H",
+  "..": "I",
+  ".---": "J",
+  "-.-": "K",
+  ".-..": "L",
+  "--": "M",
+  "-.": "N",
+  "---": "O",
+  ".--.": "P",
+  "--.-": "Q",
+  ".-.": "R",
+  "...": "S",
+  "-": "T",
+  "..-": "U",
+  "...-": "V",
+  ".--": "W",
+  "-..-": "X",
+  "-.--": "Y",
+  "--..": "Z",
+  ".----": "1",
+  "..---": "2",
+  "...--": "3",
+  "....-": "4",
+  ".....": "5",
+  "-....": "6",
+  "--...": "7",
+  "---..": "8",
+  "----.": "9",
+  "-----": "0",
+  "/": " ",
+  "--..--": ",",
+  "..--..": "?",
+  "-.-.-.": ";",
+  "---...": ":",
+  "-....-": "-",
+  "-..-.": "/",
+  ".----.": "'",
+  "-.-.--": "!",
 };
 
 var reversedMorseRef = {};
 
 for (var key in morseRef) {
-    if (morseRef.hasOwnProperty(key)) {
-        reversedMorseRef[String(morseRef[key])] = key;
-    }
+  if (morseRef.hasOwnProperty(key)) {
+    reversedMorseRef[String(morseRef[key])] = key;
+  }
 }
 
 console.log(morseRef);
 
 console.log(reversedMorseRef);
 
-
-
 function checkIfValid() {
-    input =  InputTextArea.value.toString("");
-    if (isInputMorse && input.match(/[a-zA-Z0-9_]/g) === null) {
-        morseToText();
-        return console.log(input.split(" "));
-       }
-       if (!isInputMorse) {
-        textToMorse();
-        return console.log(input.split(" "));
-       }
-       else {
-        InputTextArea.value = "";
-       }
-
-    }
+  input = InputTextArea.value.toString("");
+  if (isInputMorse && input.match(/[a-zA-Z0-9_]/g) === null) {
+    morseToText();
+    return console.log(input.split(" "));
+  }
+  if (!isInputMorse) {
+    textToMorse();
+    return console.log(input.split(" "));
+  } else {
+    InputTextArea.value = "";
+  }
+}
 
 function morseToText() {
-let str = input.split(" ").map(code => morseRef[code]).join("");
-OutputTextArea.value = str;
+  let str = input
+    .split(" ")
+    .map((code) => morseRef[code])
+    .join("");
+  OutputTextArea.value = str;
 
-return console.log(str);
+  return console.log(str);
 }
 
 function textToMorse() {
-let textStr = input.toUpperCase().split("").map(text => reversedMorseRef[text]).join(" ");
-OutputTextArea.value = textStr;
-console.log(textStr);
+  let textStr = input
+    .toUpperCase()
+    .split("")
+    .map((text) => reversedMorseRef[text])
+    .join(" ");
+  OutputTextArea.value = textStr;
+  console.log(textStr);
 }
 
-translateButton.addEventListener('click', checkIfValid); 
-swapBtn.addEventListener('click', () => {
-    isInputMorse = !isInputMorse;
-    OutputTextArea.value = '';
-    InputTextArea.value = '';
-    if (!isInputMorse) {
-        InputTextArea.setAttribute("placeholder", "Text(Input)");
-        OutputTextArea.setAttribute("placeholder", "Morse(Output)");
-    }
-    else {
-        InputTextArea.setAttribute("placeholder", "Morse(Input)");
-        OutputTextArea.setAttribute("placeholder", "Text(Output)");
-    }
+translateButton.addEventListener("click", checkIfValid);
 
-    console.log(isInputMorse);
-})
+swapBtn.addEventListener("click", () => {
+  isInputMorse = !isInputMorse;
+  OutputTextArea.value = "";
+  InputTextArea.value = "";
+  if (!isInputMorse) {
+    InputTextArea.setAttribute("placeholder", "Text(Input)");
+    OutputTextArea.setAttribute("placeholder", "Morse(Output)");
+  } else {
+    InputTextArea.setAttribute("placeholder", "Morse(Input)");
+    OutputTextArea.setAttribute("placeholder", "Text(Output)");
+  }
+});
