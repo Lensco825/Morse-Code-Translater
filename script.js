@@ -4,6 +4,7 @@ var translateButton = document.querySelector(".translateBtn");
 var input = InputTextArea.value.toString("");
 var isInputMorse = true;
 var swapBtn = document.getElementById("swapBtn");
+let secretCount = parseInt(document.getElementById("count").innerHTML, 10);
 
 var morseRef = {
   ".-": "A",
@@ -80,13 +81,35 @@ function checkIfValid() {
 }
 
 function morseToText() {
-  let str = input
+    let str = input
     .split(" ")
     .map((code) => morseRef[code])
     .join("");
-  OutputTextArea.value = str;
+    OutputTextArea.value = str;
+    console.log(str);
+    lookForSecrets();
+    
+}
 
-  return console.log(str);
+
+function lookForSecrets() {
+  if (document.body.classList.contains('sos') === false && input.split(" ").map((code) => morseRef[code]).join("") === ("SOS")) {
+    document.body.classList.add('sos');
+    secretCount++;
+    document.getElementById("count").innerHTML = secretCount;
+  }
+  if (document.body.classList.contains('classic') === false && input.split(" ").map((code) => morseRef[code]).join("") === ("WHAT HATH GOD WROUGHT")) {
+    document.body.classList.add('classic')
+    secretCount++;
+    document.getElementById("count").innerHTML = secretCount;
+
+  }
+  if (document.body.classList.contains('military') === false && input.split(" ").map((code) => morseRef[code]).join("") === ("TORTURE")) {
+    document.body.classList.add('military');
+    secretCount++;
+    document.getElementById("count").innerHTML = secretCount;
+
+  }
 }
 
 function textToMorse() {
