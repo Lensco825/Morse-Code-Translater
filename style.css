@@ -63,7 +63,6 @@ nav {
 nav > h1 {
   font-weight: 300;
   align-content: center;
-  padding: 10px;
   overflow: hidden;
   white-space: nowrap;
   text-align: center;
@@ -77,13 +76,13 @@ nav > h1 {
   }
 
   to {
-    width: 100%;
+    width: 510px;
   }
 }
 
 .morseRef {
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   bottom: 20px;
   right: 30px;
   font-size: 2rem;
@@ -92,7 +91,7 @@ nav > h1 {
 .refSheet {
   width: 250px;
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   right: 50px;
   bottom: 50px;
   border-radius: 10px;
