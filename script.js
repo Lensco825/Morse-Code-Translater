@@ -68,7 +68,7 @@ console.log(reversedMorseRef);
 
 function checkIfValid() {
   input = InputTextArea.value.toString("");
-  if (isInputMorse && input.match(/[a-zA-Z0-9_]/g) === null) {
+  if (isInputMorse && input.match(/[a-zA-Z0-9_@#$%^&*()]/g) === null) {
     morseToText();
     return console.log(input.split(" "));
   }
@@ -86,7 +86,6 @@ function morseToText() {
     .map((code) => morseRef[code])
     .join("");
     OutputTextArea.value = str;
-    console.log(str);
     lookForSecrets();
     
 }
@@ -119,7 +118,6 @@ function textToMorse() {
     .map((text) => reversedMorseRef[text])
     .join(" ");
   OutputTextArea.value = textStr;
-  console.log(textStr);
 }
 
 translateButton.addEventListener("click", checkIfValid);
